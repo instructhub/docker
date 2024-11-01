@@ -33,7 +33,7 @@ services:
       - backend
     networks:
       - dev
-  
+
   # Nginx for reverse proxy
   nginx:
     image: nginx:latest
