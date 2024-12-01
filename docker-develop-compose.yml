@@ -16,6 +16,10 @@ services:
       - "8080:8080"
     networks:
       - dev
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "3"
 
   # Frontend website
   website:
@@ -26,13 +30,17 @@ services:
     command: >
       sh -c "npm install -g pnpm &&
              pnpm install &&
-             pnpm run dev --host 0.0.0.0"
+             pnpm dev"
     ports:
       - "3000:3000"
     depends_on:
       - backend
     networks:
       - dev
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "3"
 
   # Nginx for reverse proxy
   nginx:
@@ -46,3 +54,7 @@ services:
       - backend
     networks:
       - dev
+    logging:
+      options:
+        max-size: "1m"
+        max-file: "3" 
